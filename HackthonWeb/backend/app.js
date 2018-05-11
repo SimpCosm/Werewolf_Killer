@@ -6,7 +6,7 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
 let app = express();
-let connectDb = require('./services/dbService');
+// let connectDb = require('./services/dbService');
 let fileRoutes = require('./routes/fileRoutes');
 
 // uncomment after placing your favicon in /public
