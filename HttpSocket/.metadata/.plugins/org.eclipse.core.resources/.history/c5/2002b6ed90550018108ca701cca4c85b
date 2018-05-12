@@ -1,0 +1,107 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.ConnectException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+ 
+/**
+ * 用socket来收发http协议报文
+ */
+public class SocketHttp {
+    public static void main(String[] args) {
+        Thread threadReceive=new Thread(new TestReceiveHttp());
+        threadReceive.start();
+//      Thread threadSend=new Thread(new TestSendHttp());
+//      threadSend.start();
+    }
+}
+ 
+class TestSendHttp implements Runnable{
+    @Override
+    public void run() {
+        try {
+            String path = "/";
+            String host = "http://127.0.0.1";
+            int port = 8000;
+            Socket socket = new Socket();
+            InetSocketAddress address=new InetSocketAddress(host, port);
+            socket.connect(address,3000);
+            OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream(),"utf-8");
+            osw.write("POST " + path + " HTTP/1.1\r\n");
+            osw.write("Host: " + host + " \r\n");
+            //http协议必须在报文头后面再加一个换行，通知服务器发送完成，不然服务器会一直等待
+            osw.write("\r\n");
+            
+            osw.flush();
+            socket.shutdownOutput();
+             
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream(), "utf-8"));
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            osw.close();
+            bufferedReader.close();
+            socket.close();
+        }catch (ConnectException e) {
+            System.out.println("连接失败");
+        }catch (SocketTimeoutException e) {
+            System.out.println("连接超时");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+ 
+class TestReceiveHttp implements Runnable{
+    @Override
+    public void run() {
+        ServerSocket server;
+        Socket socket;
+        try{
+            server=new ServerSocket(8079);
+            System.out.println("正在等待8079端口的请求");
+            while(true){
+                socket=server.accept();
+                if(socket!=null){
+                    new Thread(new TestReveiveThread(socket)).start();
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("异常");
+        }
+    }
+}
+ 
+class TestReveiveThread implements Runnable{
+    Socket socket;
+    public TestReveiveThread(Socket s) {
+        socket=s;
+    }
+    public void run() {
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+            OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream(),"utf-8");
+            String line=null;
+            while((line=bufferedReader.readLine())!=null){
+            	System.out.println(line);
+                if(line.equals("")){
+                    // break;
+                }
+            }
+         
+//         
+            socket.close();
+        }catch (Exception e) {
+            System.out.println("客户端接受异常"+e.getMessage());
+        }
+    }
+}
