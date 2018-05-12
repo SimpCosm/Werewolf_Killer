@@ -9,15 +9,15 @@ h3 { margin: 0; padding: 0; }
 .bgApp { background-image:url('images/appBackground.jpg'); background-repeat:no-repeat; background-position:5% 0px; background-size: auto 662px; min-height:662px; }
 .bgDusk { background-image:url('images/appDusk.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: 320px auto; min-height:483px; }
 .bgDawn { background-image:url('images/appDawn.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: 320px auto; min-height:483px; }
-.bgRoleLocked { background-image:url('images/roleLocked.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: 320px auto; min-height:483px; }
-.bgRoleVillager { background-image:url('images/roleVillager.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
-.bgRoleWerewolf { background-image:url('images/roleWerewolf.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
-.bgRoleSeer { background-image:url('images/roleSeer.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
-.bgRoleSorceror { background-image:url('images/roleSorceror.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
-.bgRoleHunter { background-image:url('images/roleHunter.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
+.bgRoleLocked { background-image:url('images/roleLocked.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
+.bgRoleVillager { background-image:url('images/roleVillager.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
+.bgRoleWerewolf { background-image:url('images/roleWerewolf.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
+.bgRoleSeer { background-image:url('images/roleSeer.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
+.bgRoleSorceror { background-image:url('images/roleSorceror.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
+.bgRoleHunter { background-image:url('images/roleHunter.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
 .roleUpperSpace { height: 25px; }
 .rolePictureSpace { height: 300px; }
-.bgGrayTrans { background-color:rgba(0,0,0,0.5); font-size: 40px; text-align: left !important; margin-left: 20px}
+.bgGrayTrans { background-color:rgba(0,0,0,0.5); font-size: 40px;}
 .ui-page { background: transparent; }
 .front-right {width:300px; float:right; margin-right:50px; margin-top: 100px}
 

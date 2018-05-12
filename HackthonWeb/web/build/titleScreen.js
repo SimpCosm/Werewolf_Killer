@@ -7,8 +7,6 @@ $(function () {
         var options = "";
         var addedPlayers = [];
 
-        $("#versionText").html("Version 0.15 (4/15/2016)");
-
         for (var role in ww.Rolesets) {
             if (jQuery.inArray(ww.Rolesets[role].players, addedPlayers) === -1) {
                 addedPlayers.push(ww.Rolesets[role].players);
@@ -49,7 +47,34 @@ $(function () {
             console.log(data)
         });
         ww.playerEntryScreen.createLineForEachPlayer();
-        changeScreens("#playerEntryScreen");
+        var i = 0;
+        // Extract all the names
+        for (i = 0; i < wwgame.numPlayers; i++) {
+            wwgame.players[i] = { name: $("#playerName" + i).val() };
+        }
+        // Extract and randomize the roles
+        var randomRoles = [];
+        for (i = 0; i < wwgame.roleset.roles.length; i++) {
+            for (var j = 0; j < wwgame.roleset.roles[i].count; j++) {
+                randomRoles.push(wwgame.roleset.roles[i]);
+            }
+        }
+        shuffle(randomRoles);
+        // Then hand them out
+        for (i = 0; i < wwgame.numPlayers; i++) {
+            wwgame.players[i].role = randomRoles[i];
+            wwgame.players[i].alive = true;
+            wwgame.players[i].index = i;
+        }
+
+        // Reset to a new game
+        wwgame.curDay = 0;
+
+        // Setup the first player's lock screen
+        ww.duskLockedScreen.resetToFirstPlayer();
+        ww.duskLockedScreen.showCurrentPlayer();
+
+        changeScreens("#duskLockedScreen");
         return false;
     });
 

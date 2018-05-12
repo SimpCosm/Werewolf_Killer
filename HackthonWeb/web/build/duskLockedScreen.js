@@ -14,21 +14,16 @@ $(function() {
     };
 
     function checkUnlockState() {
-        if ($("#unlockButton1").is(':checked') && $("#unlockButton2").is(':checked')) {
+        if ($("#unlockButton1").is(':checked')) {
             ww.duskPlayerScreen.setupCurrentPlayerActions();
             setTimeout(function() {
                 changeScreens("#duskPlayerScreen", "flip");
                 $("#unlockButton1").removeAttr("checked").checkboxradio("refresh");
-                $("#unlockButton2").removeAttr("checked").checkboxradio("refresh");
             }, 200);
         }
     }
 
     $("#unlockButton1").click(function() {
-        checkUnlockState();
-    });
-
-    $("#unlockButton2").click(function() {
         checkUnlockState();
     });
 

@@ -10,12 +10,7 @@ $(function() {
             players += '<input type="text" id="playerName' + i;
             players += '" name="playerName' + i;
             players += '" value="';
-            if(i < wwgame.players.length) {
-                players += wwgame.players[i].name;
-            }
-            else {
-                players += 'Player' + (i + 1);
-            }
+            players += 'Player' + (i + 1);
             players += '" data-theme="a" />';
         }
         console.log(players)
