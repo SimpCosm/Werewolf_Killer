@@ -61,6 +61,25 @@ var wwgame = {};
         return curPage;
     };
 
+    wwgame.killPlayerAtIndex = function(killIndex) {
+        if (killIndex >= 0 && killIndex < ww.numPlayers) {
+            wwgame.players[killIndex].alive = false;
+        } else {
+            console.log("player not in current players");
+        }
+    }
+
+    wwgame.getPlayerRole = function(index) {
+        if (index >= 0 && index < wwgame.numPlayers) {
+            console.log(wwgame.players[index]);
+            return wwgame.players[index];
+        }
+    }
+
+    wwgame.hasWitch = function(index) {
+        return false;
+    }
+
     wwgame.getFirstLivingPlayerIndex = function() {
         return wwgame.getNextLivingPlayerIndex(-1);
     };
@@ -115,6 +134,10 @@ var wwgame = {};
 
     wwgame.getLivingSeersList = function() {
         return wwgame.makeListWherePlayerMatches(function(p) { return p.alive && p.role.role == ww.Roles.Seer; });
+    };
+
+    wwgame.getLivingWitchList = function() {
+        return wwgame.makeListWherePlayerMatches(function(p) { return p.alive && p.role.role == ww.Roles.Witch; });
     };
 
     wwgame.getLivingNonWolvesList = function() {

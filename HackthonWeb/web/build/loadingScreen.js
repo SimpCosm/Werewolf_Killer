@@ -34,7 +34,7 @@ $(function() {
                                         'images/roleVillager.jpg',
                                         'images/roleSeer.jpg',
                                         'images/roleHunter.jpg',
-                                        'images/roleSorceror.jpg',
+                                        'images/roleWitch.jpg',
                                         'images/roleWerewolf.jpg'],
                                        function() {
             var loadPage = wwgame.loadState();

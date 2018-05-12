@@ -21,18 +21,6 @@ var wwhtml = {};
     wwhtml.getDeathText = function(deadPlayer) {
         var playerInfo = "";
         playerInfo += "<h2>" + deadPlayer.name + "</h2><br />";
-        if (wwgame.roleset.reveal == ww.DeathReveal.Full) {
-            playerInfo += "who was a:<br />";
-            playerInfo += "<h3>" + wwhtml.GetRoleAndAttributes(deadPlayer.role, true) + "</h3>";
-        }
-        else if (wwgame.roleset.reveal == ww.DeathReveal.Role) {
-            playerInfo += "who was a:<br />";
-            playerInfo += "<h3>" + deadPlayer.role.role.desc + "</h3>";
-        }
-        else if (wwgame.roleset.reveal == ww.DeathReveal.Team) {
-            playerInfo += "who was a member of team:<br />";
-            playerInfo += "<h3>" + deadPlayer.role.role.team + "</h3>";
-        }
         return playerInfo;
     };
 

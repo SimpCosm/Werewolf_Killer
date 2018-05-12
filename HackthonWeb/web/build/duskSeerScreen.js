@@ -24,10 +24,17 @@ $(function() {
             $.post("/api/files/post", {data: [1, 2, 3, 4, 5]},
                 function(data, status) {
                     $("#duskSeerText").html(data);
-                    $.post("/api/files/post", {data: [1, 2, 3, 4, 5]},
+                    var index = parseInt(data);
+                    $.post("/api/files/post", {data: ["ok", "not_ok"]},
                     function(data, status) {
                         // change state machine.
                         // display final info.
+                        if (data === "ok") {
+                            var player = wwgame.getPlayerRole(index);
+                            console.log(role);
+                        } else if (data === "not_ok") {
+                            console.log("Request Not Ok for Seer.");
+                        }
                     })
                 }
             )
@@ -37,9 +44,14 @@ $(function() {
 
     $("#nextSeerButton").click(function() {
         console.log("next button clicked.");
-        ww.dawnPlayScreen.showNightActions();
-        ww.duskSeerScreen.nextPage = "#dawnPlayScreen";
-        changeScreens("#dawnPlayScreen", "flip");
+        if (wwgame.hasWitch()) {
+            ww.duskWitchScreen.cmdPlayerActions();
+            changeScreens("#duskWitchScreen", "flip");
+        } else {
+            ww.dawnPlayScreen.showNightActions();
+            ww.duskSeerScreen.nextPage = "#dawnPlayScreen";
+            changeScreens("#dawnPlayScreen", "flip");
+        }
     });
 
 });
