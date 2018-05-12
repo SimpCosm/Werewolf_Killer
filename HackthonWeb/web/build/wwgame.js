@@ -113,6 +113,10 @@ var wwgame = {};
         return wwgame.makeListWherePlayerMatches(function(p) { return p.alive && p.role.role == ww.Roles.Werewolf; });
     };
 
+    wwgame.getLivingSeersList = function() {
+        return wwgame.makeListWherePlayerMatches(function(p) { return p.alive && p.role.role == ww.Roles.Seer; });
+    };
+
     wwgame.getLivingNonWolvesList = function() {
         return wwgame.makeListWherePlayerMatches(function(p) { return p.alive && p.role.role != ww.Roles.Werewolf; });
     };

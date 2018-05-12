@@ -46,8 +46,8 @@ var ww = {};
             players: 5,
             reveal: ww.DeathReveal.Full,
             roles: [
-                {role:ww.Roles.Werewolf, count: 1},
-                {role:ww.Roles.Seer, n0:ww.N0Actions.RandomNegative, count: 1},
+                {role:ww.Roles.Werewolf, n0:ww.N0Actions.Kill, count: 1},
+                {role:ww.Roles.Seer, n0:ww.N0Actions.ChooseView, count: 1},
                 {role:ww.Roles.Villager, count: 3}
             ]
         },
