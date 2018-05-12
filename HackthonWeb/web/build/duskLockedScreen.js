@@ -15,7 +15,7 @@ $(function() {
 
     function checkUnlockState() {
         if ($("#unlockButton1").is(':checked')) {
-            ww.duskPlayerScreen.setupCurrentPlayerActions();
+            ww.duskPlayerScreen.showCurrentPlayer(wwgame.curPlayer);
             setTimeout(function() {
                 changeScreens("#duskPlayerScreen", "flip");
                 $("#unlockButton1").removeAttr("checked").checkboxradio("refresh");
