@@ -54,7 +54,7 @@ class TestReceiveHttp implements Runnable{
         Socket socket;
         try{
             server=new ServerSocket(8079);
-            //System.out.println("正在等待8079端口的请求!!!!");
+            System.out.println("正在等待8079端口的请求!!!!");
             while(true){
                 socket=server.accept();
                 if(socket!=null){
@@ -91,15 +91,25 @@ class TestReveiveThread implements Runnable{
                 System.out.println("======> parse array from request:");
                 System.out.println(ges_opt);
                 while(true) {
-	                // while (!samplePicture());
+	                while (!samplePicture());
 	                String faceStr = FaceTest.requestFace();
 	                String responseStr = parseJSONWithJSONObject(faceStr);
 	                if (ges_opt.contains(responseStr)) {
 	                	// send response
-	                	FaceTest.response(responseStr);
+	                	// FaceTest.response(responseStr);
+	                	osw.write("HTTP/1.1 200 OK\r\n");
+	                    osw.write("Content-Type: text/html;charset=UTF-8\r\n");
+	                    osw.write("Date: Tue, 19 May 2015 02:48:27 GMT\r\n");
+	                    osw.write("\r\n");
+	                    osw.write(responseStr);
+	                    osw.write("\r\n");
+	                    osw.flush();
+	                    bufferedReader.close();
+	                    osw.close();
 	                	break;
 	                }
 	                // 没有得到想要的手势，继续采集、判别
+	                Thread.sleep(1000);
                 }
             }
         }catch (Exception e) {
@@ -122,7 +132,7 @@ class TestReveiveThread implements Runnable{
             JSONObject gesRes = (JSONObject) gestureObj.get("gesture");
             System.out.println(gesRes);
             for (String ges : allges) {
-            	if((int)gesRes.get(ges) > 90) {
+            	if((double)gesRes.get(ges) > 60.0) {
             		response = ges;
             		break;
             	}
@@ -132,6 +142,7 @@ class TestReveiveThread implements Runnable{
         {
             e.printStackTrace();
         }
+    	System.out.println("====> Face ans: "+response);
     	return response;
     }
     // sample a picture from local
@@ -144,10 +155,10 @@ class TestReveiveThread implements Runnable{
         opencv_core.Mat mat = converter.convertToMat(grabber.grabFrame());
         
         if ( !opencv_imgcodecs.imwrite(PICTURE_PATH, mat)) {
-        	System.out.println("Write failed");
+        	System.out.println("Picture Write failed");
         	return false;
         }
-        System.out.println("Write success");
+        System.out.println("Picture Write success");
         return true;
     }
     
@@ -172,9 +183,9 @@ class TestReveiveThread implements Runnable{
 class FaceTest {
 	public static void response(String ans) throws Exception{
 		
-		String url = "https://127.0.0.1";
+		String url = "http://127.0.0.1";
         HashMap<String, String> map = new HashMap<>();
-        HashMap<String, byte[]> byteMap = new HashMap<>();
+        HashMap<String, byte[]> byteMap = null;
         map.put("ans", ans);
         try{
         	post(url, map, byteMap);
@@ -189,12 +200,13 @@ class FaceTest {
 		byte[] buff = getBytesFromFile(file);
 		String url = "https://api-cn.faceplusplus.com/humanbodypp/beta/gesture";
         HashMap<String, String> map = new HashMap<>();
-        HashMap<String, byte[]> byteMap = null;
+        HashMap<String, byte[]> byteMap = new HashMap<>();
         map.put("api_key", "1m972QdR8NCFkUrffNjfxYQTC6Z6PqqF");
         map.put("api_secret", "oW-34l5yHP-XIRbb-EVKpFSWIQFpDyMS");
 //		map.put("return_landmark", "1");
 //      map.put("return_attributes", "gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus");
         byteMap.put("image_file", buff);
+        // System.out.println("file read.");
         try{
             byte[] bacd = post(url, map, byteMap);
             String str = new String(bacd);
