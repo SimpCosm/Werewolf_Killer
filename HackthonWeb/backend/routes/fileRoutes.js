@@ -1,7 +1,8 @@
 let express = require('express');
 let mongodb = require('mongodb');
 let connectDb = require('../services/dbService');
-
+const requestP = require('./request-promise');
+var http = require('http');
 let multer = require('multer');
 let upload = multer();
 let stream = require('stream');
@@ -53,17 +54,28 @@ router.post('/upload', upload.any(), (req, res, next) => {
 });
 
 router.get('/analysis', (req, res, next) => {
-    console.log("ana")
-    connectDb.then(db => {
-        db.collection('fs.files').find({}).toArray().then(doc => {
-            doc.forEach(function (element) {
-                console.log(element.filename);
-            }, this);
-            res.send(doc);
-        }).catch(err => {
-            next(err);
-        })
-    })
+    var options = {
+        host: '127.0.0.1',
+        port: '8080',
+        path: '/submit',
+        method: 'Get'
+    };
+    // 处理响应的回调函数
+    var callback = function (response) {
+        // 不断更新数据
+        var body = '';
+        response.on('data', function (data) {
+            body += data;
+        });
+
+        response.on('end', function () {
+            // 数据接收完成
+            console.log(body);
+        });
+        // 向服务端发送请求
+    };
+    var request = http.request(options, callback);
+    request.end();
 })
 
 router.post('/process', upload.any(), (req, res, next) => {
@@ -93,34 +105,34 @@ router.post('/process', upload.any(), (req, res, next) => {
                     }
                     json.push(jsonRow);
                 }
-            //     var bodyString = JSON.stringify(json);
-            //     var headers = {
-            //         'Content-Type': 'application/x-www-form-urlencoded',
-            //         'Content-Length': 6
-            //     };
-            //     var options = {
-            //         // host: '163.184.133.186',
-            //         // port: '8080',
-            //         host: '127.0.0.1',
-            //         port: '8080',
-            //         path: '/submit',
-            //         //method: 'POST',
-            //         headers: headers
-            //     };
-            //     var callback = function (response) {
-                    
-            //     };
-            //     var request = http.request(options, callback);
-            //     request.write("dddddd\n");
-            //     request.end();
-                    res.send(json);
+                //     var bodyString = JSON.stringify(json);
+                //     var headers = {
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //         'Content-Length': 6
+                //     };
+                //     var options = {
+                //         // host: '163.184.133.186',
+                //         // port: '8080',
+                //         host: '127.0.0.1',
+                //         port: '8080',
+                //         path: '/submit',
+                //         //method: 'POST',
+                //         headers: headers
+                //     };
+                //     var callback = function (response) {
+
+                //     };
+                //     var request = http.request(options, callback);
+                //     request.write("dddddd\n");
+                //     request.end();
+                res.send(json);
             })
                 .catch(err => {
                     next(err)
                 })
 
 
-            
+
         }).catch(err => {
             next(err);
         })
@@ -128,7 +140,7 @@ router.post('/process', upload.any(), (req, res, next) => {
 
     router.post("/submit", (req, res, next) => {
         console.log("succeed")
-        res.send(200, "sss"); 
+        res.send(200, "sss");
 
     })
 });
