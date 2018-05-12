@@ -47,7 +47,7 @@ $(function() {
         }
     };
 
-    ww.duskWolfScreen.gotoSeer() = function() {
+    ww.duskWolfScreen.gotoSeer = function() {
         // TODO: play audio: seer please open eyes.
         setTimeout(function() {
             ww.duskSeerScreen.cmdPlayerActions();

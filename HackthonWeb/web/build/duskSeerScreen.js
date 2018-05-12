@@ -51,7 +51,7 @@ $(function() {
         }
     };
 
-    ww.duskSeerScreen.gotoWitch() = function() {
+    ww.duskSeerScreen.gotoWitch = function() {
         // TODO: play audio: witch please open eyes.
 
         setTimeout(function() {
@@ -60,7 +60,7 @@ $(function() {
         }, 5000);
     };
 
-    ww.duskSeerScreen.gotoDawn() = function() {
+    ww.duskSeerScreen.gotoDawn = function() {
         // TODO: play audio: the day is comming.
 
         setTimeout(function() {
