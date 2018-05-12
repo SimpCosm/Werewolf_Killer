@@ -16,11 +16,11 @@ $(function() {
         }
         else {
             // Setup the first player's lock screen, game continues...
-            ww.duskCmdScreen.resetToFirstPlayer();
-            ww.duskCmdScreen.cmdPlayerActions();
+            ww.duskWolfScreen.resetToFirstPlayer();
+            ww.duskWolfScreen.cmdPlayerActions();
             //ww.duskLockedScreen.showCurrentPlayer();
 
-            changeScreens("#duskCmdScreen");
+            changeScreens("#duskWolfScreen");
         }
     });
 

@@ -27,8 +27,8 @@ $(function() {
         else {
             if (wwgame.curDay === 0) {
                 console.log("Today is Day 0");
-                ww.duskCmdScreen.cmdPlayerActions();
-                changeScreens("#duskCmdScreen", "flip");
+                ww.duskWolfScreen.cmdPlayerActions();
+                changeScreens("#duskWolfScreen", "flip");
             }
 /*            
             else {
