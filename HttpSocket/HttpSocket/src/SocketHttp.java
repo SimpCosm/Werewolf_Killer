@@ -36,7 +36,6 @@ import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
- 
 /**
  * 用socket来收发http协议报文
  */
@@ -54,7 +53,7 @@ class TestReceiveHttp implements Runnable{
         Socket socket;
         try{
             server=new ServerSocket(8079);
-            System.out.println("正在等待8079端口的请求");
+            //System.out.println("正在等待8079端口的请求");
             while(true){
                 socket=server.accept();
                 if(socket!=null){

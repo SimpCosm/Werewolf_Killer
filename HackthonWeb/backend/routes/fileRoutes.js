@@ -6,6 +6,7 @@ let multer = require('multer');
 let upload = multer();
 let stream = require('stream');
 var ObjectId = require('mongodb').ObjectId;
+var querystring = require('querystring');
 
 app = express();
 router = express.Router();
@@ -53,6 +54,9 @@ router.post('/upload', upload.any(), (req, res, next) => {
 });
 
 router.get('/analysis', (req, res, next) => {
+    var post_data = querystring.stringify({
+        message: ['ok','big_v']
+    });
     var options = {
         host: '127.0.0.1',
         port: '8079',
@@ -74,6 +78,7 @@ router.get('/analysis', (req, res, next) => {
         // 向服务端发送请求
     };
     var request = http.request(options, callback);
+    request.write(post_data + "\n");
     request.end();
 })
 
