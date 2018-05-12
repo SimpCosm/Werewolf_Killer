@@ -17,9 +17,9 @@ h3 { margin: 0; padding: 0; }
 .bgRoleHunter { background-image:url('images/roleHunter.jpg'); background-repeat:no-repeat; background-position:50% 25px; background-size: 320px auto; min-height:483px; }
 .roleUpperSpace { height: 25px; }
 .rolePictureSpace { height: 300px; }
-.bgGrayTrans { background-color:rgba(0,0,0,0.5); }
+.bgGrayTrans { background-color:rgba(0,0,0,0.5); font-size: 40px; text-align: left !important; margin-left: 20px}
 .ui-page { background: transparent; }
-#versionText { float: right; font-size: 50%; margin: 5px; }
+.front-right {width:300px; float:right; margin-right:50px; margin-top: 100px}
 
 /* Fix for jQuery Mobile's centering mishaps */
 .ui-checkbox { float: none !important; display: inline-block !important; margin: -3px !important; }

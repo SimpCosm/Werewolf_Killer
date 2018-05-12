@@ -36,29 +36,26 @@
 
     <div data-role="page" data-theme="b" id="titleScreen" class="centerAlign">
         <div class="centerAlign bgApp">
-            <h2>Werewolf</h2>
-
-            <div data-role="fieldcontain">
+            <div data-role="fieldcontain" class="front-right">
                 <fieldset data-role="controlgroup">
-                    <legend>Players/Roleset:</legend>
                     <label for="players">Players:</label>
                     <select id="players" name="players"></select>
-                    <label for="roleset">Roleset:</label>
-                    <select id="roleset" name="roleset"></select>
                 </fieldset>
+                <div id="rolesetdesc" class="bgGrayTrans"></div>
+                <button id="titlePlayButton" style="width:300px">Play</button>
+                <br/><br/>
             </div>
 
-            <div id="rolesetdesc" class="bgGrayTrans"></div>
-            <button id="titlePlayButton">Play</button>
-            <br/><br/>
-            <div id="versionText"></div>
+
         </div>
     </div>
 
     <div data-role="page" data-theme="b" id="playerEntryScreen">
         <div class="centerAlign bgApp">
             <h2 class="centerAlign">Who's Playing?</h2>
-            <div id="editPlayerListDiv"><div id="playerList"></div></div>
+            <div id="editPlayerListDiv">
+                <div id="playerList"></div>
+            </div>
             <div class="centerAlign">
                 <button id="entryPlayButton">Play</button><br />
                 <button id="entryReturnButton">Main Menu</button>
@@ -78,8 +75,8 @@
             <div data-role="content" class="centerAlign">
                 <div data-role="fieldcontain" class="centerAlign">
                     <fieldset data-role="controlgroup" data-type="horizontal" class="centerSelf centerAlign">
-                        <input type="checkbox" name="unlockButton1" id="unlockButton1"/><label for="unlockButton1">Show</label>
-                        <input type="checkbox" name="unlockButton2" id="unlockButton2"/><label for="unlockButton2">Role</label>
+                        <input type="checkbox" name="unlockButton1" id="unlockButton1" /><label for="unlockButton1">Show</label>
+                        <input type="checkbox" name="unlockButton2" id="unlockButton2" /><label for="unlockButton2">Role</label>
                     </fieldset>
                 </div>
             </div>
@@ -92,7 +89,9 @@
 
     <div data-role="page" data-theme="b" id="duskPlayerScreen" class="centerAlign">
         <div id="duskPlayerBg" class="centerAlign bgRoleLocked">
-            <div class="roleUpperSpace"><h2><span id="duskPlayerName">You</span></h2></div>
+            <div class="roleUpperSpace">
+                <h2><span id="duskPlayerName">You</span></h2>
+            </div>
             <div class="rolePictureSpace">&nbsp;</div>
             <div id="roleInfo" class="bgGrayTrans"></div>
             <div id="roleInstructions"></div>
@@ -106,8 +105,7 @@
     <div data-role="page" data-theme="b" id="dawnPlayScreen" class="centerAlign">
         <div class="centerAlign bgDawn">
             <div id="dawnRevealNightActions"></div>
-            <br /><br />
-            Someone must hang for these atrocities.  Choose a lynch.
+            <br /><br /> Someone must hang for these atrocities. Choose a lynch.
             <br /><br />
             <button id="lynchContinue">Continue</button><br />
         </div>
@@ -115,7 +113,9 @@
 
     <div data-role="page" data-theme="b" id="dawnChooseLynch" class="centerAlign">
         <div class="centerAlign bgDawn">
-            <div id="lynchPlayerListDiv"><fieldset id="lynchPlayerList" data-theme="b" data-role="controlgroup"></fieldset></div>
+            <div id="lynchPlayerListDiv">
+                <fieldset id="lynchPlayerList" data-theme="b" data-role="controlgroup"></fieldset>
+            </div>
             <button id="lynchNow">Lynch</button><br />
         </div>
     </div>
@@ -141,4 +141,5 @@
     </div>
 
 </body>
+
 </html>

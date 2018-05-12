@@ -18,6 +18,7 @@ $(function() {
             }
             players += '" data-theme="a" />';
         }
+        console.log(players)
         $("#playerList").html(players).trigger("create");
     };
 
