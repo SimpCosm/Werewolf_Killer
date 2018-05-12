@@ -1,7 +1,6 @@
 let express = require('express');
 let mongodb = require('mongodb');
 let connectDb = require('../services/dbService');
-const requestP = require('./request-promise');
 var http = require('http');
 let multer = require('multer');
 let upload = multer();
@@ -56,9 +55,9 @@ router.post('/upload', upload.any(), (req, res, next) => {
 router.get('/analysis', (req, res, next) => {
     var options = {
         host: '127.0.0.1',
-        port: '8080',
-        path: '/submit',
-        method: 'Get'
+        port: '8079',
+        path: '/',
+        method: 'Post'
     };
     // 处理响应的回调函数
     var callback = function (response) {
