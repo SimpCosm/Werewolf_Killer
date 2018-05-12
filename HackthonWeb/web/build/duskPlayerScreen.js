@@ -20,9 +20,12 @@ $(function () {
         $.post("/api/files/post", { data: ['ok', 'not_ok'] },
             function (data, status) {
                 if (data == 'ok') {
+                    //TODO: player [curPlayer] please close your eyes.
+                    
+
                     changeScreens("#duskLockedScreen", "flip");
-                    ww.duskLockedScreen.checkUnlockState()
                     wwgame.curPlayer = wwgame.getNextLivingPlayerIndex(wwgame.curPlayer);
+                    ww.duskLockedScreen.checkUnlockState()
                     if (wwgame.curPlayer >= 0 && wwgame.curPlayer < wwgame.numPlayers) {
                         ww.duskLockedScreen.showCurrentPlayer();
                         ww.duskBlankLockedScreen.nextPage = "#duskLockedScreen";
@@ -31,16 +34,10 @@ $(function () {
                     else {
                         if (wwgame.curDay === 0) {
                             console.log("Today is Day 0");
+                            //TODO: wolf please open your eyes.
                             ww.duskWolfScreen.cmdPlayerActions();
                             changeScreens("#duskWolfScreen", "flip");
                         }
-                        /*            
-                                    else {
-                                        ww.dawnPlayScreen.showNightActions();
-                                        ww.duskBlankLockedScreen.nextPage = "#dawnPlayScreen";
-                                        changeScreens("#duskBlankLockedScreen", "flip");
-                                    }
-                        */
                     }
                 }
             }

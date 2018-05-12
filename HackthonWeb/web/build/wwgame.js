@@ -72,7 +72,7 @@ var wwgame = {};
     wwgame.getPlayerRole = function(index) {
         if (index >= 0 && index < wwgame.numPlayers) {
             console.log(wwgame.players[index]);
-            return wwgame.players[index];
+            return wwgame.players[index].role.role.desc;
         }
     }
 

@@ -19,19 +19,29 @@ $(function() {
         console.log(seers);
         console.log(seers.length);
         if (seers.length >= 1) {
-            console.log("seers");
+            //TODO: play audio: please choose who to view.
             $("#duskSeerText").html("Seer Choose Someone To View.");
-            $.post("/api/files/post", {data: [1, 2, 3, 4, 5]},
+            $.post("/api/files/post", {data: [1, 2, 3, 4, 5, 6, 7, 8]},
                 function(data, status) {
                     $("#duskSeerText").html(data);
                     var index = parseInt(data);
+                    // TODO: play audio: please confirm.
                     $.post("/api/files/post", {data: ["ok", "not_ok"]},
                     function(data, status) {
                         // change state machine.
                         // display final info.
                         if (data === "ok") {
                             var player = wwgame.getPlayerRole(index);
-                            console.log(role);
+                            role_desc = player.role.role.desc;
+                            // TODO: play audio: the role of is
+                            console.log(role_desc);
+                            $("#duskSeerText").html(role_desc);
+                            // TODO: play audio: please seer close eyes.
+                            if (wwgame.hasWitch()) {
+                                ww.duskSeerScreen.gotoWitch();
+                            } else {
+                                ww.duskSeerScreen.gotoDawn();
+                            }
                         } else if (data === "not_ok") {
                             console.log("Request Not Ok for Seer.");
                         }
@@ -41,6 +51,24 @@ $(function() {
         }
     };
 
+    ww.duskSeerScreen.gotoWitch() = function() {
+        // TODO: play audio: witch please open eyes.
+
+        setTimeout(function() {
+            ww.duskWitchScreen.cmdPlayerActions();
+            changeScreens("#duskWitchScreen", "flip");
+        }, 5000);
+    };
+
+    ww.duskSeerScreen.gotoDawn() = function() {
+        // TODO: play audio: the day is comming.
+
+        setTimeout(function() {
+            ww.dawnPlayScreen.showNightActions();
+            ww.duskSeerScreen.nextPage = "#dawnPlayScreen";
+            changeScreens("#dawnPlayScreen", "flip");
+        }, 5000);
+    };
 
     $("#nextSeerButton").click(function() {
         console.log("next button clicked.");
