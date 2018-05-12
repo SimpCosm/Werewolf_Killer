@@ -58,7 +58,7 @@ router.get('/analysis', (req, res, next) => {
         message: ['ok','big_v']
     });
     var options = {
-        host: '127.0.0.1',
+        host: '10.0.93.111',
         port: '8079',
         path: '/',
         method: 'Post'
