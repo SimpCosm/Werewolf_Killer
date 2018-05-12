@@ -10,8 +10,8 @@ $(function() {
         else {
             gameOverText += "<h2>Good Wins!</h2><br />";
         }
-        gameOverText += gameOver.text;
-        gameOverText += "<br /><br /><h3>Team Evil:</h3>";
+        //gameOverText += gameOver.text;
+        gameOverText += "<h3>Team Evil:</h3>";
         var evilTeam = wwgame.getFullEvilTeam();
         for (var i = 0; i < evilTeam.length; i++) {
             gameOverText += evilTeam[i].name + " - " + wwhtml.GetRoleAndAttributes(evilTeam[i].role, true);

@@ -81,11 +81,12 @@ class TestReveiveThread implements Runnable{
             while(true){
             	line=bufferedReader.readLine();
             	System.out.println(line);
-                if(!line.equals("Content-Disposition: form-data; name=\"ges_list\"")){
+                // if(!line.equals("data_start")){
+                if (!line.equals("data_start")) {
                     continue;
                 }
                 // json array str here
-                line=bufferedReader.readLine();
+                // line=bufferedReader.readLine();
                 line=bufferedReader.readLine();
                 List<String> ges_opt = parseJSONWithJSONArray(line);
                 System.out.println("======> parse array from request:");
@@ -93,8 +94,13 @@ class TestReveiveThread implements Runnable{
                 while(true) {
 	                while (!samplePicture());
 	                String faceStr = FaceTest.requestFace();
+	                System.out.println("get face reqeust.");
 	                String responseStr = parseJSONWithJSONObject(faceStr);
+	                System.out.println("parse face request.");
+	                if (responseStr == null)
+	                	continue;
 	                if (ges_opt.contains(responseStr)) {
+	                	System.out.println("get right ans.");
 	                	// send response
 	                	// FaceTest.response(responseStr);
 	                	osw.write("HTTP/1.1 200 OK\r\n");
@@ -108,12 +114,19 @@ class TestReveiveThread implements Runnable{
 	                    osw.close();
 	                	break;
 	                }
+	                System.out.println("not get right ans.");
 	                // 没有得到想要的手势，继续采集、判别
-	                Thread.sleep(1000);
+	                Thread.sleep(200);
                 }
             }
         }catch (Exception e) {
-            System.out.println("客户端接受异常"+e.getMessage());
+            System.out.println("客户端接收异常"+e.getMessage());
+            try {
+				socket.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("connection close()异常"+e1.getMessage());
+			}
         }
     }
     
@@ -140,7 +153,8 @@ class TestReveiveThread implements Runnable{
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+        	System.out.println("Parse response from Face++ error.(Face++ cannot recgnize it.)");
+            // e.printStackTrace();
         }
     	System.out.println("====> Face ans: "+response);
     	return response;
@@ -159,6 +173,8 @@ class TestReveiveThread implements Runnable{
         	return false;
         }
         System.out.println("Picture Write success");
+        grabber.stop();
+        System.out.println("grabber stopped.");
         return true;
     }
     

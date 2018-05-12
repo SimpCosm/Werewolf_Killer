@@ -7,8 +7,8 @@ h3 { margin: 0; padding: 0; }
 .centerSelf { margin-left:auto; margin-right:auto; }
 .fullScreenDiv { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; }
 .bgApp { background-image:url('images/appBackground.jpg'); background-repeat:no-repeat; background-position:5% 0px; background-size: auto 662px; min-height:662px; }
-.bgDusk { background-image:url('images/appDusk.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: 320px auto; min-height:483px; }
-.bgDawn { background-image:url('images/appDawn.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: 320px auto; min-height:483px; }
+.bgDusk { background-image:url('images/appBackground.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: auto 662px; min-height:662px; }
+.bgDawn { background-image:url('images/appBackground.jpg'); background-repeat:no-repeat; background-position:50% 0px; background-size: auto 662px; min-height:662px; }
 .bgRoleLocked { background-image:url('images/roleLocked.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
 .bgRoleVillager { background-image:url('images/roleVillager.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }
 .bgRoleWerewolf { background-image:url('images/roleWerewolf.jpg'); background-repeat:no-repeat; background-position:50% 35px; background-size: auto 590px; min-height:662px; }

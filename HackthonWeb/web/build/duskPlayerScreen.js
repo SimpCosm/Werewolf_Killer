@@ -17,7 +17,10 @@ $(function () {
     }
 
     ww.duskPlayerScreen.request = function () {
-        $.post("/api/files/post", { data: ['ok', 'not_ok'] },
+        var array = [];
+        array[0] = 'ok';
+        array[1] ='not_ok'
+        $.post("/api/files/post", { data: array },
             function (data, status) {
                 if (data == 'ok') {
                     changeScreens("#duskLockedScreen", "flip");

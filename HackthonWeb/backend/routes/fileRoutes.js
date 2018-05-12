@@ -56,16 +56,16 @@ router.post('/upload', upload.any(), (req, res, next) => {
 router.post('/post', (req, res, next) => {
     console.log(req.body)
     var map = {
-        1: 'index_finger_up',
-        2: 'double_finger_up',
-        3: 'ok',
-        4: 'rock',
-        5: 'hand_open',
-        6: 'phonecall',
-        7: 'namaste',
-        8: 'big_v',
-        ok: 'thumb_up',
-        not_ok: 'thumb_down'
+        '1': 'index_finger_up',
+        '2': 'double_finger_up',
+        '3': 'ok',
+        '4': 'rock',
+        '5': 'hand_open',
+        '6': 'phonecall',
+        '7': 'namaste',
+        '8': 'big_v',
+        'ok': 'thumb_up',
+        'not_ok': 'thumb_down'
     }
     var reverse_map = {
         'index_finger_up': '1',
@@ -80,11 +80,21 @@ router.post('/post', (req, res, next) => {
         'thumb_down': 'not_ok'
     }
     // var post_data = "data_start\n['index_finger_up','double_finger_up','rock','beg','hand_open']"
-    var post_data = "data_start\n['thumb_up','thumb_down']"
-    // for (var i = 0; i < req.body['data[]'].length; i ++) {
-    //     post_data += map[req.body['data[]'][i]];
-    // }
-    // console.log(post_data)
+    var post_data = "data_start\n["
+
+    for (var i = 0; i < 1; i ++) {
+        post_data += "'";
+        console.log(req.body['data[]'])
+        post_data += map[req.body['data[]'][i]];
+        post_data += "'";
+    }
+    for (var i = 1; i < req.body['data[]'].length; i ++) {
+        post_data += ",'";
+        post_data += map[req.body['data[]'][i]];
+        post_data += "'";
+    }
+    post_data += "]";
+    console.log(post_data)
     var options = {
         host: '127.0.0.1',
         port: '8079',
