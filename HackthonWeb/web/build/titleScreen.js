@@ -73,8 +73,9 @@ $(function () {
         // Setup the first player's lock screen
         ww.duskLockedScreen.resetToFirstPlayer();
         ww.duskLockedScreen.showCurrentPlayer();
-
         changeScreens("#duskLockedScreen");
+        ww.duskLockedScreen.checkUnlockState()
+
         return false;
     });
 
