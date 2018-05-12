@@ -53,14 +53,43 @@ router.post('/upload', upload.any(), (req, res, next) => {
     })
 });
 
-router.get('/analysis', (req, res, next) => {
-    var post_data = "data_start\n['thumb_up','big_v','thumb_down','heart_c','beg','heart_d','double_finger_up']"
+router.post('/post', (req, res, next) => {
+    console.log(req.body)
+    var map = {
+        1: 'index_finger_up',
+        2: 'double_finger_up',
+        3: 'ok',
+        4: 'rock',
+        5: 'hand_open',
+        6: 'phonecall',
+        7: 'namaste',
+        8: 'big_v',
+        ok: 'thumb_up',
+        not_ok: 'thumb_down'
+    }
+    var reverse_map = {
+        'index_finger_up': '1',
+        'double_finger_up': '2',
+        'ok': '3',
+        'rock': '4',
+        'hand_open': '5',
+        'phonecall': '6',
+        'namaste': '7',
+        'big_v': '8',
+        'thumb_up': 'ok',
+        'thumb_down': 'not_ok'
+    }
+    // var post_data = "data_start\n['index_finger_up','double_finger_up','rock','beg','hand_open']"
+    var post_data = "data_start\n['thumb_up','thumb_down']"
+    // for (var i = 0; i < req.body['data[]'].length; i ++) {
+    //     post_data += map[req.body['data[]'][i]];
+    // }
+    // console.log(post_data)
     var options = {
         host: '127.0.0.1',
         port: '8079',
         path: '/submit',
-        method: 'Post',
-        message: 'ok'
+        method: 'Post'
     };
     // 处理响应的回调函数
     var callback = function (response) {
@@ -72,37 +101,7 @@ router.get('/analysis', (req, res, next) => {
 
         response.on('end', function () {
             // 数据接收完成
-            console.log(body);
-        });
-        // 向服务端发送请求
-    };
-    var request = http.request(options, callback);
-    request.write(post_data + "\n");
-    request.end();
-})
-
-router.post('/post', (req, res, next) => {
-    var post_data = querystring.stringify({
-        message: 'ok'
-    });
-    var options = {
-        host: '127.0.0.1',
-        port: '8080',
-        path: '/submit',
-        method: 'Post',
-        message: 'ok'
-    };
-    // 处理响应的回调函数
-    var callback = function (response) {
-        // 不断更新数据
-        var body = '';
-        response.on('data', function (data) {
-            body += data;
-        });
-
-        response.on('end', function () {
-            // 数据接收完成
-            console.log(body);
+            res.send(reverse_map[body.trim()])
         });
         // 向服务端发送请求
     };
