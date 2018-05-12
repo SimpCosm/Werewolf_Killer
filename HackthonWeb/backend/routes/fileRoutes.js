@@ -54,14 +54,43 @@ router.post('/upload', upload.any(), (req, res, next) => {
 });
 
 router.get('/analysis', (req, res, next) => {
+    var post_data = "data_start\n['thumb_up','big_v','thumb_down','heart_c','beg','heart_d','double_finger_up']"
+    var options = {
+        host: '127.0.0.1',
+        port: '8079',
+        path: '/submit',
+        method: 'Post',
+        message: 'ok'
+    };
+    // 处理响应的回调函数
+    var callback = function (response) {
+        // 不断更新数据
+        var body = '';
+        response.on('data', function (data) {
+            body += data;
+        });
+
+        response.on('end', function () {
+            // 数据接收完成
+            console.log(body);
+        });
+        // 向服务端发送请求
+    };
+    var request = http.request(options, callback);
+    request.write(post_data + "\n");
+    request.end();
+})
+
+router.post('/post', (req, res, next) => {
     var post_data = querystring.stringify({
-        message: ['ok','big_v']
+        message: 'ok'
     });
     var options = {
-        host: '10.0.93.111',
-        port: '8079',
-        path: '/',
-        method: 'Post'
+        host: '127.0.0.1',
+        port: '8080',
+        path: '/submit',
+        method: 'Post',
+        message: 'ok'
     };
     // 处理响应的回调函数
     var callback = function (response) {
