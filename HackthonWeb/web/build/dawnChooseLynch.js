@@ -3,7 +3,7 @@ ww.dawnChooseLynch = {};
 $(function() {
 
     ww.dawnChooseLynch.showPlayerLynchList = function() {
-        var players = wwhtml.getLivingPlayerRadioList("Who is it to be?", "lynchPlayerName", "lynchPlayerRadioList");
+        var players = wwhtml.getLivingPlayerRadioList("", "lynchPlayerName", "lynchPlayerRadioList");
         $("#lynchPlayerList").html(players);
         $("#lynchPlayerListDiv").trigger("create");
     };
