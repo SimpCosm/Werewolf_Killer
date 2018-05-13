@@ -110,8 +110,10 @@
 
     <div data-role="page" data-theme="b" id="dawnPlayScreen" class="centerAlign">
         <div class="centerAlign bgDawn">
-            <div id="dawnRevealNightActions"></div>
-            <br /><br /> Someone must hang for these atrocities. Choose a lynch.
+            <div id="dawnRevealNightActions" class="bgGrayTrans"></div>
+            <br /><br /> <div class="bgGrayTrans" style="margin-top:80px">
+                Someone must hang for these atrocities. Choose a lynch.
+                </div>
             <br /><br />
             <button id="lynchContinue">Continue</button><br />
         </div>
@@ -120,6 +122,9 @@
     <div data-role="page" data-theme="b" id="dawnChooseLynch" class="centerAlign">
         <div class="centerAlign bgDawn">
             <div id="lynchPlayerListDiv">
+                <div class="bgGrayTrans">
+                    Who Is It To Be?
+                    </div>
                 <fieldset id="lynchPlayerList" data-theme="b" data-role="controlgroup"></fieldset>
             </div>
             <button id="lynchNow">Lynch</button><br />
@@ -127,19 +132,17 @@
     </div>
 
     <div data-role="page" data-theme="b" id="lynchRevealScreen" class="centerAlign">
-        <div class="centerAlign bgDusk">
+        <div class="centerAlign bgDusk bgGrayTrans" >
+            <br /><br /><br />
             You have lynched:
             <br /><br />
             <div id="lynchRevealText"></div>
-            <br /><br />
-            <button id="lynchRevealContinue">Continue</button><br />
+            It's getting dark. Please close your eyes...
         </div>
     </div>
 
     <div data-role="page" data-theme="b" id="gameOverScreen" class="centerAlign">
         <div class="centerAlign bgApp">
-            <h3>Game Over</h3>
-            <br /><br />
             <div class="bgGrayTrans" id="gameOverText"></div>
             <br /><br />
             <button id="gameOverMainMenu">Back to Main Menu</button><br />
