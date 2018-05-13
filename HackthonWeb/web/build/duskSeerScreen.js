@@ -20,6 +20,11 @@ $(function() {
         console.log(seers.length);
         if (seers.length >= 1) {
             //TODO: play audio: please choose who to view.
+            srcName = "./audio/女巫请选择目标.mp3";
+            console.log(srcName);
+            $("#bg_music_seer").append('<audio id="m_bg_music_seer_view", autoplay="autoplay", src='+srcName+'/>');
+            mp3 = $("#m_bg_music_seer_view")[0];
+            mp3.play();
             $("#duskSeerText").html("Seer Choose Someone To View.");
             $.post("/api/files/post", {data: [1, 2, 3, 4, 5, 6, 7, 8]},
                 function(data, status) {
@@ -29,6 +34,11 @@ $(function() {
                     $("#duskSeerText").html(str);
                     var index = parseInt(data);
                     // TODO: play audio: please confirm.
+                    srcName = "./audio/请确认你的身份.mp3";
+                    console.log(srcName);
+                    $("#bg_music_seer").append('<audio id="m_bg_music_seer_id", autoplay="autoplay", src='+srcName+'/>');
+                    mp3 = $("#m_bg_music_seer_id")[0];
+                    mp3.play();
                     $.post("/api/files/post", {data: ["ok", "not_ok"]},
                     function(data, status) {
                         // change state machine.
@@ -45,6 +55,11 @@ $(function() {
                             console.log(role_desc);
                             $("#duskSeerText").html(role_desc);
                             // TODO: play audio: please seer close eyes.
+                            srcName = "./audio/女巫请闭眼.mp3";
+                            console.log(srcName);
+                            $("#bg_music_seer").append('<audio id="m_bg_music_seer_close", autoplay="autoplay", src='+srcName+'/>');
+                            mp3 = $("#m_bg_music_seer_close")[0];
+                            mp3.play();
                             if (wwgame.hasWitch()) {
                                 ww.duskSeerScreen.gotoWitch();
                             } else {

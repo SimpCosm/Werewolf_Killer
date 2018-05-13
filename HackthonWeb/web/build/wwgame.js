@@ -65,6 +65,7 @@ var wwgame = {};
         console.log(killIndex);
         if (killIndex >= 0 && killIndex < wwgame.numPlayers) {
             wwgame.players[killIndex].alive = false;
+            wwgame.nkPlayerIndex = killIndex;
         } else {
             console.log("player not in current players");
         }

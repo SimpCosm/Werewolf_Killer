@@ -26,6 +26,11 @@ $(function() {
     $(window).load(function() {
         // Called after all of the DOM and images are finished loading
 
+        srcName = "./audio/天黑请闭眼.mp3"
+        $("#bg_music_loading").append('<audio id="m_bg_music", autoplay="autoplay", src='+srcName+'/>');
+        var mp3 = $("#m_bg_music")[0];
+        mp3.play();
+
         // Load up the images that we're not currently using so they're ready
         ww.loadingScreen.preloadImages(['images/appBackground.jpg',
                                         'images/appDusk.jpg',

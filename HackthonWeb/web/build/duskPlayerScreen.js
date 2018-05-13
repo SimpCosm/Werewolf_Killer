@@ -26,6 +26,11 @@ $(function () {
                 if (data == 'ok') {
                     //TODO: player [curPlayer] please close your eyes.
                     
+                    srcName = "./audio/player" + (wwgame.curPlayer+1) + "_close_eyes.mp3";
+                    console.log(srcName);
+                    $("#bg_music_player").append('<audio id="m_bg_music_close", autoplay="autoplay", src='+srcName+'/>');
+                    var mp3 = $("#m_bg_music_close")[0];
+                    mp3.play();
 
                     changeScreens("#duskLockedScreen", "flip");
                     wwgame.curPlayer = wwgame.getNextLivingPlayerIndex(wwgame.curPlayer);
@@ -38,8 +43,20 @@ $(function () {
                     }
                     else {
                         if (wwgame.curDay === 0) {
-                            console.log("Today is Day 0");
                             //TODO: wolf please open your eyes.
+                            srcName = "./audio/狼人请睁眼.mp3";
+                            console.log(srcName);
+                            $("#bg_music_wolf").append('<audio id="m_bg_music_wolf_open", autoplay="autoplay", src='+srcName+'/>');
+                            mp3 = $("#m_bg_music_wolf_open")[0];
+                            mp3.play();
+
+                            srcName = "./audio/狼人请互相确认身份.mp3";
+                            console.log(srcName);
+                            $("#bg_music_wolf").append('<audio id="m_bg_music_wolf_id", autoplay="autoplay", src='+srcName+'/>');
+                            mp3 = $("#m_bg_music_wolf_id")[0];
+                            mp3.play();
+                            
+                            
                             ww.duskWolfScreen.cmdPlayerActions();
                             changeScreens("#duskWolfScreen", "flip");
                         }
