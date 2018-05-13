@@ -24,8 +24,12 @@ $(function() {
 
             $.post("/api/files/post", {data: [1, 2, 3, 4, 5, 6, 7, 8]},
                 function(data, status) {
-                    $("#duskWolfText").html(data);
-                    var kill_index = parseInt(data);
+                    var str = 'Do you want to kill Player ';
+                    str += data;
+                    str += ' ?'
+                    $("#duskWolfText").html(str);
+                    var kill_index = parseInt(data.trim());
+                    console.log(kill_index);
                     //TODO: play audio: -> please confirm.
 
                     $.post("/api/files/post", {data: ["ok", "not_ok"]},
@@ -40,6 +44,7 @@ $(function() {
 
                         } else if (data === "not_ok") {
                             console.log("Request Not Ok");
+                            ww.duskWolfScreen.cmdPlayerActions()
                         }
                     })
                 }

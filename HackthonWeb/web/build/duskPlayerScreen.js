@@ -9,6 +9,7 @@ $(function () {
 
     ww.duskPlayerScreen.showCurrentPlayer = function (playerIndex) {
         var curPlayer = wwgame.players[playerIndex];
+        console.log(playerIndex)
         // Setup name, role
         $("#duskPlayerName").html(curPlayer.name);
         $("#roleInfo").html("You are a <b>" + wwhtml.GetRoleAndAttributes(curPlayer.role) + "</b>");
@@ -28,8 +29,9 @@ $(function () {
 
                     changeScreens("#duskLockedScreen", "flip");
                     wwgame.curPlayer = wwgame.getNextLivingPlayerIndex(wwgame.curPlayer);
-                    ww.duskLockedScreen.checkUnlockState()
+                    
                     if (wwgame.curPlayer >= 0 && wwgame.curPlayer < wwgame.numPlayers) {
+                        ww.duskLockedScreen.checkUnlockState()
                         ww.duskLockedScreen.showCurrentPlayer();
                         ww.duskBlankLockedScreen.nextPage = "#duskLockedScreen";
                         changeScreens("#duskBlankLockedScreen", "flip");

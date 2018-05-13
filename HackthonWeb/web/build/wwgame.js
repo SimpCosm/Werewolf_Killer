@@ -62,7 +62,8 @@ var wwgame = {};
     };
 
     wwgame.killPlayerAtIndex = function(killIndex) {
-        if (killIndex >= 0 && killIndex < ww.numPlayers) {
+        console.log(killIndex);
+        if (killIndex >= 0 && killIndex < wwgame.numPlayers) {
             wwgame.players[killIndex].alive = false;
         } else {
             console.log("player not in current players");

@@ -17,6 +17,7 @@ $(function () {
         // TODO: play audio: play [curPlayer] please open eyes. 
 
         setTimeout(function () {
+            console.log('here')
             ww.duskPlayerScreen.showCurrentPlayer(wwgame.curPlayer);
             changeScreens("#duskPlayerScreen", "flip");
             // TODO: play audio: please assure your identity.

@@ -82,16 +82,21 @@ router.post('/post', (req, res, next) => {
     // var post_data = "data_start\n['index_finger_up','double_finger_up','rock','beg','hand_open']"
     var post_data = "data_start\n["
 
-    for (var i = 0; i < 1; i ++) {
+    for (var i = 0; i < 1; i++) {
         post_data += "'";
         console.log(req.body['data[]'])
         post_data += map[req.body['data[]'][i]];
         post_data += "'";
     }
-    for (var i = 1; i < req.body['data[]'].length; i ++) {
+    for (var i = 1; i < req.body['data[]'].length; i++) {
         post_data += ",'";
         post_data += map[req.body['data[]'][i]];
         post_data += "'";
+        if (req.body['data[]'] == '2') {
+            post_data += ",'";
+            post_data += 'victory';
+            post_data += "'";
+        }
     }
     post_data += "]";
     console.log(post_data)

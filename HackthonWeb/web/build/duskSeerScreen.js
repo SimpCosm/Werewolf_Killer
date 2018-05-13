@@ -23,7 +23,10 @@ $(function() {
             $("#duskSeerText").html("Seer Choose Someone To View.");
             $.post("/api/files/post", {data: [1, 2, 3, 4, 5, 6, 7, 8]},
                 function(data, status) {
-                    $("#duskSeerText").html(data);
+                    var str = 'Do you want to see Player '
+                    str += data;
+                    str += ' ?'
+                    $("#duskSeerText").html(str);
                     var index = parseInt(data);
                     // TODO: play audio: please confirm.
                     $.post("/api/files/post", {data: ["ok", "not_ok"]},
@@ -32,7 +35,12 @@ $(function() {
                         // display final info.
                         if (data === "ok") {
                             var player = wwgame.getPlayerRole(index);
-                            role_desc = player.role.role.desc;
+                            console.log(player);
+                            console.log(player.role);
+                            //console.log(player.role.role);
+                            //console.log(player.role.role.desc);
+
+                            role_desc = player.role;
                             // TODO: play audio: the role of is
                             console.log(role_desc);
                             $("#duskSeerText").html(role_desc);
@@ -44,6 +52,7 @@ $(function() {
                             }
                         } else if (data === "not_ok") {
                             console.log("Request Not Ok for Seer.");
+                            ww.duskSeerScreen.cmdPlayerActions()
                         }
                     })
                 }
